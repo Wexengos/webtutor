@@ -1,0 +1,102 @@
+// ESTILOS NAVBAR
+
+.navBar {
+  background-color: #9a0008;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  height: 10vh;
+  margin-bottom: 1rem;
+}
+
+.navContent {
+  height: 10vh;
+  padding: 0rem 2rem 0rem 2rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.brand {
+  font-size: 1.5rem;
+  align-self: center;
+  margin-bottom: 0 !important;
+  margin-left: -1rem;
+  cursor: default;
+  color: #fcfcfc;
+}
+
+// ESTILOS NAVMENU
+
+.navMenuDesktopContainer {
+  height: 10vh;
+  display: flex;
+  position: fixed;
+  right: 0;
+  align-items: center;
+  color: #fcfcfc;
+
+  li {
+    font-size: 1.25rem;
+    display: inline;
+    margin-right: 1rem;
+  }
+}
+
+.navMenuMobileContainer {
+  button {
+    margin-right: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+    z-index: 10;
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+    color: #FCFCFC;
+  }
+
+  height: 10vh;
+  display: flex;
+  position: fixed;
+  right: 0;
+  align-items: center;
+  color: #fcfcfc;
+
+  li {
+    font-size: 1.25rem;
+    margin: 1rem;
+    height: 2rem;
+  }
+}
+
+@mixin navMenuMobile {
+  padding-top: 3rem;
+  overflow-y: scroll;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  background: #6a0005;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  max-width: 10rem;
+  z-index: 9;
+}
+
+.navMenu {
+  @include navMenuMobile;
+}
+
+.navMenuOpen {
+  @include navMenuMobile;
+
+  width: 100%;
+}

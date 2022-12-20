@@ -1,14 +1,19 @@
+import { Fragment } from "react";
+
 import { Home } from "./pages/Home";
 import { Quiz } from "./pages/Quiz";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NavBar } from "./components/NavBar";
 
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     // Todas as páginas devem estar aqui dentro para validar a navegação
     <BrowserRouter>
+      <Fragment>
+        <NavBar />
+      </Fragment>
       <Routes>
         {/* Rota para Home page */}
         <Route path="/" element={<Home />} />
