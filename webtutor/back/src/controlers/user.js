@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer"); // Importa o módulo principal
 
 module.exports = {
   create: async function (req, res, next) {
-    const { name, age, address, formation, email, password, cpf, type} = req.body;
+    const { name, age, address, formation, email, password, cpf, type, identification} = req.body;
     const errors = [];
 
     if (!name) {
@@ -38,6 +38,10 @@ module.exports = {
       errors.push({ error: "Password is empty" });
     }
 
+    if (!identification) {
+      errors.push({ error: "identification is empty" });
+    }
+
     if (errors.length > 0) return res.status(400).json(errors);
 
     User.findAll({
@@ -58,6 +62,27 @@ module.exports = {
         return res.status(400).send({ error: "Username already exists" });
       }
     });
+    if(type == 'teacher'){
+      Teacher.findAll({
+        where: {
+          register: identification,
+        },
+      }).then((result) => {
+        if (result != "") {
+          return res.status(400).send({ error: "register already exists" });
+        }
+      });
+    }else{
+      Student.findAll({
+        where: {
+          registration: identification,
+        },
+      }).then((result) => {
+        if (result != "") {
+          return res.status(400).send({ error: "registration already exists" });
+        }
+      });
+    }
 
     await User.create({
       name,
@@ -74,6 +99,7 @@ module.exports = {
         if (type == 'teacher') {
 
           await Teacher.create({
+            register: identification,
             idUser: result.id
           })
             .then((result) => {
@@ -84,6 +110,7 @@ module.exports = {
         else {
 
           await Student.create({
+            registration: identification,
             idUser: result.id
           })
             .then((result) => {

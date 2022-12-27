@@ -8,11 +8,10 @@ const Teacher = sequelize.define(
     {
       
         register: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             primaryKey: true,
-            autoIncrement: true,
         },
     },
     {
